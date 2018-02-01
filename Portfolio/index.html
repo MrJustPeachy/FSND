@@ -7,8 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-<!--    <link rel="stylesheet" href="css/main.css">-->
+
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/main.css">
 
     <title>Portfolio</title>
   </head>
@@ -16,19 +17,17 @@
   <body>
     
     <header>
-        <div class="container">
+        <div class="container header">
         
             <div class="row">
                 
-                <div class="col-1">
+<!--                <div class="col-2">-->
+                <div class="col-12 text-right">
                 
-                </div>
-            
-                <div class="col-2">
-                    <img src="img/Untitled.png" class="img-fluid" alt="Udacity Logo">
-                </div>
+                    <img src="img/udacity_logo.png" class="img-fluid logo float-left" width="140" alt="Udacity Logo">
+               
+<!--                </div>-->
                 
-                <div class="col-9 text-right">
                     
                     <br />
                     <h1>Dillon Pietsch</h1>
@@ -40,16 +39,20 @@
             
         </div>
     </header>
+
+    <div class="container">
+      <hr class="content-divider">
+    </div>
         
     <!-- Contains the main picture -->
     <div class="container">
+        
         <div class="row">
             
-            <div class="col-1">
-            </div>
-            
-            <div class="col-11 align-right">
-                <img src="img/computer_code.jpg" class="img-fluid" alt="Picture of code">
+            <div class="col-12">
+                
+                <img src="img/computer_code.jpg" class="img-fluid hero" alt="Picture of code">
+        
             </div>
             
         </div>
@@ -58,29 +61,92 @@
 
     
     <!-- Contains the three project images and links -->
-    <section class="container">
+    <div class="container">
         
         <div class="row">
+            
+            <div class="col-12">
+            
+                <h3>Featured Projects</h3>
+            
+            </div>
             
         </div>
         
         <div class="row">
         
+            <div class="col-xs-12 col-lg-4">
+                    
+                <figure>
+
+                    <a href="https://github.com/MrJustPeachy/FSND/tree/master/Movie%20Trailer%20Website" target="_blank">
+
+                        <img src="img/movie_trailer_website.png" class="img-thumbnail" alt="Movie trailer website example">
+                    
+                    </a>
+
+                    <figcaption class="project-description">
+                    
+                        <span class="font-weight-bold text-center">Movie trailer website</span>
+                        
+                        <br>
+                        
+                        <span class="text-left">A website that dynamically posts movie titles, images, and trailers.</span>
+                    
+                    </figcaption>
+                </figure>
+                
+            </div>
             
-        
-            <div cl
+            <div class="col-xs-12 col-lg-4">
+                    
+                <figure>
+
+                    <a href="https://github.com/MrJustPeachy/FSND/tree/master/Movie%20Trailer%20Website" target="_blank">
+
+                        <img src="img/movie_trailer_website.png" class="img-thumbnail" alt="Movie trailer website example">
+                    
+                    </a>
+
+                    <figcaption class="project-description">
+                    
+                        <span class="font-weight-bold text-center">Movie trailer website</span>
+                        
+                        <br>
+                        
+                        <span class="text-left">A website that dynamically posts movie titles, images, and trailers.</span>
+                    
+                    </figcaption>
+                </figure>
+                
+            </div>
             
-            <article class="col-4">
-            </article>
+            <div class="col-xs-12 col-lg-4">
+                    
+                <figure>
+
+                    <a href="https://github.com/MrJustPeachy/FSND/tree/master/Movie%20Trailer%20Website" target="_blank">
+
+                        <img src="img/movie_trailer_website.png" class="img-thumbnail" alt="Movie trailer website example">
+                    
+                    </a>
+
+                    <figcaption class="project-description">
+                    
+                        <span class="font-weight-bold text-center">Movie trailer website</span>
+                        
+                        <br>
+                        
+                        <span class="text-left">A website that dynamically posts movie titles, images, and trailers.</span>
+                    
+                    </figcaption>
+                
+                </figure>
+                
+            </div>
             
-            <article class="col-4">
-            </article>
-            
-            <article class="col-4">
-            </article>
-            
-        </section>
-    </section>
+        </div>
+    </div>
     
       
     <footer>
