@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="col-md-12">
+
+    <h3>Add Item</h3>
+
+    <form action="{{ url_for('addItem') }}" method="post">
+
+        <div class="form-group">
+        <p>Name:</p>
+        <input type="text" size="30" name="name">
+        </div>
+
+        <div class="form-group">
+            <p>Description:</p>
+            <textarea rows="5" cols="30" name="description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <p>Category:</p>
+            <select name="category">
+                {% for category in categories %}
+
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+
+                {% endfor %}
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Submit">
+
+        <a href="{{ url_for('categoriesMenu') }}">Cancel</a>
+
+    </form>
+
+</div>
+
+{% endblock %}

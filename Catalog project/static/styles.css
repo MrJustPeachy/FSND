@@ -1,0 +1,30 @@
+header {
+    background-color: black;
+}
+
+.content {
+    background-color: white;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.categories {
+    border-right: 1px solid grey;
+    text-align: center;
+}
+
+body {
+    background-color: grey;
+}
+
+a {
+    color: orange;
+}
+
+.navbar-brand {
+    color: #FFF;
+}
+
+p {
+    margin-bottom: 0;
+}
