@@ -47,6 +47,6 @@ You have to install Python and the following modules in order to get this progra
    to start using the catalog app. Enjoy!
 
 #### Here are three links to get you started (the JSON endpoints)
- * [Categories JSON endpoint](localhost:5000/categories.json)
- * [CategoryItems JSON endpoint](localhost:5000/categoryitems.json)
- * [Catalog JSON endpoint](localhost:5000/catalog.json)
+ * [Categories JSON endpoint](http://localhost:5000/categories.json)
+ * [CategoryItems JSON endpoint](http://localhost:5000/categoryitems.json)
+ * [Catalog JSON endpoint](http://localhost:5000/catalog.json)
