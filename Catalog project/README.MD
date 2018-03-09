@@ -1,7 +1,7 @@
 # Catalog Website Application
 
 ### Setting up software
-There are multiple programs that you will have to install before you can run this project.
+You have to install Python and the following modules in order to get this program running.
 
 #### Python and modules
  * [Python 2.7.14](https://www.python.org/downloads/)
