@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 from flask import Flask, render_template, \
     request, redirect, url_for, flash, jsonify
 from sqlalchemy import create_engine
@@ -60,6 +62,7 @@ def catalogJSON():
 
     catalog = []
 
+    # Adds each categoryItem if it's in the corresponding category.
     for category in categories:
         catalog.append(category.name)
 
@@ -75,6 +78,8 @@ def catalogJSON():
 
 @app.route('/login')
 def login():
+    
+    # Creates random state string for security
     state = ''.join(random.choice
                     (string.ascii_uppercase + string.digits)
                     for x in xrange(32))
@@ -163,7 +168,6 @@ def gconnect():
     login_session['user_id'] = user_id
 
     # See if a user exists, if it doesn't make a new one
-
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -181,6 +185,8 @@ def gconnect():
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
+    
+    # If the user has no access token no one is connected.
     if access_token is None:
         print 'Access Token is None'
         response = make_response(json.dumps
@@ -188,10 +194,13 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
+    # Revoke the user's access_token
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s'\
           % login_session['access_token']
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
+    
+    # If user is successfully logged out remove there session info
     if result['status'] == '200':
         del login_session['access_token']
         del login_session['gplus_id']
@@ -246,6 +255,7 @@ def addItem():
 
 @app.route('/catalog/<string:category_name>/<string:categoryitem_name>/')
 def categoryItemPage(category_name, categoryitem_name):
+    
     category = session.query(Category).filter_by(name=category_name).one()
     categoryItem = session.query(CategoryItem).filter_by(
         category_id=category.id, name=categoryitem_name).one()
