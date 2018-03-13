@@ -77,7 +77,7 @@ and now you're connected to the grader account via SSH!
 ##### Configuring the timezone and install NTP.
 
 		sudo dpkg-reconfigure tzdata
-Select UTC for the timezone.
+Select None of the above, and then UTC for the timezone.
  
  		sudo apt-get install ntp
 NTP helps keep the server's time sychronized.
