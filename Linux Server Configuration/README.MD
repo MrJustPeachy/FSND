@@ -33,6 +33,7 @@ Then, save the file and restart ssh
  
  		sudo ufw allow 2200/tcp
 		sudo ufw allow ntp
+		sudo ufw allow http
 		sudo ufw enable
 		
 ### Create and connect grader account for project reviewer
