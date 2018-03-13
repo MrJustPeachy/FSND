@@ -55,11 +55,17 @@ On a local machine, enter the following command:
 When asked for what to call the keys, save a file in:
 
 		~/.ssh/grader
+And create a password for your keys.
+
+
+Keep the public key accessible (grader.pub), and connect using the original account, and enter in the following commands in the home directory of your grader account:
 		
-Keep the public key accessible (grader.pub), and connect using the original account, and enter in the following commands:
+		sudo su grader
+		mkdir .ssh
+		touch .ssh/authorized_keys
+		nano .ssh/authorized_keys
 		
-		sudo nano /home/grader/.ssh/authorized_keys
-Paste your public key into this file and save it.		
+Paste your public key (grader.pub) into this file and save it.		
 
 ###### Adding security to the .ssh directory and authorized_keys file
 After creating the authorized_keys file, enter in the following commands:
@@ -71,7 +77,7 @@ These secure the directory and file so no unauthorized personel can access them.
 ###### Logging in using the grader account
 Now connect to the grader account for the rest of the configuration:
 
-		ssh grader@54.186.59.227 -p 2200 -i ~/.ssh/grader
+		ssh grader@IP_ADDRESS -p 2200 -i ~/.ssh/grader
 and now you're connected to the grader account via SSH!
 
 ### Synchronize Server
