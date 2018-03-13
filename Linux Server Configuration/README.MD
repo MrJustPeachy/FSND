@@ -74,6 +74,8 @@ Now connect to the grader account for the rest of the configuration:
 		ssh grader@54.186.59.227 -p 2200 -i ~/.ssh/grader
 and now you're connected to the grader account via SSH!
 
+### Synchronize Server
+
 ##### Configuring the timezone and install NTP.
 
 		sudo dpkg-reconfigure tzdata
@@ -81,6 +83,8 @@ Select None of the above, and then UTC for the timezone.
  
  		sudo apt-get install ntp
 NTP helps keep the server's time sychronized.
+
+### Installing Python, packages, and the project
 
 ##### Installing server packages to run the application
  
