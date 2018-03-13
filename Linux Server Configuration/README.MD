@@ -110,5 +110,5 @@ Now Apache needs to be restarted to support WSGI.
 		sudo apt-get install git
 		sudo git clone https://github.com/MrJustPeachy/FSND.git
 		sudo apt-get install python-pip
-		sudo pip install psycopg2 flask sqlalchemy httplib2 json oauth2client
+		sudo pip install psycopg2 flask sqlalchemy httplib2 json oauth2client requests
 		
