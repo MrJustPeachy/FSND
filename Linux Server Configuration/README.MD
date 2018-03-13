@@ -13,14 +13,14 @@
 		
 Change the line:
 	
-		Port 20
+		Port 22
 to
 
 		Port 2200
 
 Change the line:
 
-		PermitRootLogin yes
+		PermitRootLogin prohibit-password
 to
 
 		PermitRootLogin no
@@ -39,7 +39,7 @@ Then, save the file and restart ssh
 
 ##### Creating the grader account and giving it sudo powers
 
-		adduser grader
+		sudo adduser grader
 		sudo nano /etc/sudoers.d/grader
 		
    This will open up a file that links back to sudoers.
