@@ -98,7 +98,7 @@ NTP helps keep the server's time sychronized.
 ### Installing Python, packages, and the project
 
 ##### Install Git and downloading the catalog project, packages, and make prevent the repo from being accessed via a browser
- Source: (Digital Ocean: Deploying a Flask Application on an Ubuntu VPS)[https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-two-%E2%80%93-creating-a-flask-app]
+ Source: [Digital Ocean: Deploying a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-two-%E2%80%93-creating-a-flask-app)
  
  		cd /var/www
 		sudo apt-get install git
@@ -119,7 +119,7 @@ Inside the file type the following:
 		RedirectMatch 404 /\.git
 		
 ##### Installing apache2 to run the application
-Source: (Digital Ocean: Deploying a Flask Application on an Ubuntu VPS)[https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-one%E2%80%94-install-and-enable-mod_wsgi]
+Source: [Digital Ocean: Deploying a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-one%E2%80%94-install-and-enable-mod_wsgi)
 
  		sudo apt-get install apache2
 vist your server through a browser and check to make sure that you see the Apache2 default page that has text that says: "It works!"
@@ -145,7 +145,7 @@ And the last step is to enable the config file:
 		sudo a2enconf fqdn
 
 ##### Extending apache and configuring it further
-Source: (Digital Ocean: Deploying a Flask Application on an Ubuntu VPS)[https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-four-%E2%80%93-configure-and-enable-a-new-virtual-host]
+Source: [Digital Ocean: Deploying a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-four-%E2%80%93-configure-and-enable-a-new-virtual-host)
 
 Now we'll create the main application config
 
@@ -235,7 +235,7 @@ to
 		engine = create_engine('postgresql://catalog:*CATALOG USER PASSWORD*@localhost/catalog')
 
 ##### Initialize and secure the database
-Source: (Digital Ocean: How to Secure PostgreSQL on an Ubuntu VPS)[https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps]
+Source: [Digital Ocean: How to Secure PostgreSQL on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
 	sudo apt-get install postgresql
 	sudo su postgres
