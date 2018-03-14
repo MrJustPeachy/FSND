@@ -1,5 +1,7 @@
 # Linux Server Configuration
 
+[Server link](http://ec2-54-244-164-59.us-west-2.compute.amazonaws.com/)
+
 ### Security
 
 ##### Installing linux updates
