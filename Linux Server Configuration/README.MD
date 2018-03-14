@@ -1,6 +1,7 @@
 # Linux Server Configuration
 
 IP Address for ssh: 54.244.164.59
+
 [Server link](http://ec2-54-244-164-59.us-west-2.compute.amazonaws.com/)
 
 ### Security
