@@ -267,6 +267,6 @@ and finally restart apache to install/update any changes!
 The site is now live with the template information. Now we just have to fix the google sign-in button and we are complete
 ###### Configuring google oAuth login button
 
-Go to (this link)[https://console.developers.google.com/apis/credentials] and click on your API key used for this project. Under Authorized JavaScript origins put the DNS name of your server (which this website will tell you)[https://whatismyipaddress.com/ip-hostname]. Then put the same URL with the login path (ex: .....com/login) under Authorized redirect URIs and now OAuth will work!
+Go to [this link][https://console.developers.google.com/apis/credentials] and click on your API key used for this project. Under Authorized JavaScript origins put the DNS name of your server [which this website will tell you](https://whatismyipaddress.com/ip-hostname). Then put the same URL with the login path (ex: .....com/login) under Authorized redirect URIs and now OAuth will work!
 
 Congrats. The server should be up and running smoothly. If you have any troubles along the way, view the error log (/var/log/apache2/error.log) for information to help you solve your problem.
