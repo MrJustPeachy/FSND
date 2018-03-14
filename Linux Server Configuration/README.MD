@@ -10,6 +10,7 @@ IP Address for ssh: 54.244.164.59
 
 		sudo apt-get update
 		sudo apt-get upgrade
+		sudo apt-get dist-upgrade
 
 ##### Secure SSH
  
