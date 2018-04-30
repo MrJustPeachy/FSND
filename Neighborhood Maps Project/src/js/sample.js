@@ -1,15 +1,23 @@
 var settings = {
 		"async": true,
 		"crossDomain": true,
-		"url": "https://api.yelp.com/v3/businesses/search?latitude=39.718401&longitude=-105.1500635&radius=10000",
+		"url": "https://developers.zomato.com/api/v2.1/location_details?entity_id=36388&entity_type=group",
 		"method": "GET",
 		"headers": {
-			"Authorization": "Bearer cMYxnvWYIymPp-wzNBjk4RjOCrU9JksqVFwU6BhjZJiUaVIZu_YkOctV8w8XagW73guiL8xCA-d38w7_MM85y18Q3M_Q-mO66buzKU0z7GnI4_7EDIkoD49fsAWwWnYx",
-			"Cache-Control": "no-cache",
-			"Postman-Token": "ba6482bb-16be-4ae4-8ec0-9f5d9bc81b2d"
+			"user-key": "20c48f3be1cb3d5555d26d949ac56258"
 		}
 	};
 
+var restaurants = [];
+
 $.ajax(settings).done(function (response) {
-  	console.log(response);
+    console.log(response["best_rated_restaurant"]);
+
+    for (var i = 0; i < response["best_rated_restaurant"].length; i++){
+        restaurants[i] = response["best_rated_restaurant"][i];
+    }
+
+  	restaurants = response["best_rated_restaurant"];
 });
+
+console.log(restaurants);
