@@ -11,13 +11,11 @@ var settings = {
 var restaurants = [];
 
 $.ajax(settings).done(function (response) {
-    console.log(response["best_rated_restaurant"]);
 
     for (var i = 0; i < response["best_rated_restaurant"].length; i++){
         restaurants[i] = response["best_rated_restaurant"][i];
     }
 
-  	restaurants = response["best_rated_restaurant"];
 });
 
 console.log(restaurants);
