@@ -18,11 +18,11 @@ $.ajax(settings).done(function (response) {
 
     for (var i = 0; i < restaurantList.length; i++){
         console.log(restaurantList[i]["restaurant"]);
-        restaurantName = response[i]["restaurant"]["name"];
-        costForTwo = response[i]["restaurant"]["average_cost_for_two"];
-        imageURL = response[i]["restaurant"]["featured_image"];
-        coords = {"latitude": response[i]["restaurant"]["location"]["latitude"], "longitude": response[i]["restaurant"]["location"]["longitude"]};
-        cuisines = response[i]["restaurant"]
+        restaurantName = restaurantList[i]["restaurant"]["name"];
+        costForTwo = restaurantList[i]["restaurant"]["average_cost_for_two"];
+        imageURL = restaurantList[i]["restaurant"]["featured_image"];
+        coords = {"latitude": restaurantList[i]["restaurant"]["location"]["latitude"], "longitude": restaurantList[i]["restaurant"]["location"]["longitude"]};
+        cuisines = restaurantList[i]["restaurant"]["cuisines"];
         restaurants[i] = {
             name: restaurantName,
             costForTwo: costForTwo,
