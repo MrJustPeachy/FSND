@@ -1,13 +1,20 @@
+'use strict';
+
 // Array containing all of the restaurants
 var restaurants;
+var markers = [];
+var map;
+var infowindow;
 
-createMarkers(locations){
+function createMarkers(locations){
 
-    for (var i = 0; i < restaurants.length; i++) {
+    infowindow = new google.maps.InfoWindow();
 
-        restaurantInfo = locations[i]["restaurants"];
+    for (var i = 0; i < locations.length; i++) {
+
+        var restaurantInfo = locations[i]["restaurant"];
         // Get the position from the location array.
-        var position = {"lat": restaurantInfo["location"]["latitude"], "lng": restaurantInfo["location"]["longitude"]};
+        var position = {"lat": Number(restaurantInfo["location"]["latitude"]), "lng": Number(restaurantInfo["location"]["longitude"])};
         var title = restaurantInfo["name"];
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
@@ -18,17 +25,10 @@ createMarkers(locations){
         });
         // Push the marker to our array of markers.
         markers.push(marker);
+        marker.setMap(map);
         // Create an onclick event to open the large infowindow at each marker.
         marker.addListener('click', function() {
-        populateInfoWindow(this, largeInfowindow);
-        });
-        // Two event listeners - one for mouseover, one for mouseout,
-        // to change the colors back and forth.
-        marker.addListener('mouseover', function() {
-        this.setIcon(highlightedIcon);
-        });
-        marker.addListener('mouseout', function() {
-        this.setIcon(defaultIcon);
+        populateInfoWindow(this, infowindow);
         });
     }
 
@@ -48,19 +48,17 @@ var settings = {
 $.ajax(settings).done(function (response) {
 
     restaurants = response["best_rated_restaurant"];
-    console.log(response["best_rated_restaurant"]);
-    console.log(restaurants);
-
     createMarkers(restaurants);
 
 }).fail(function(){
+
     alert("Zomato API call failed. Try again.");
 
 });
 
 // global var for initMap()
-var map;
-var markers = [];
+
+
 
 // Async callback to Google Maps API
 function initMap() {
@@ -70,58 +68,17 @@ function initMap() {
         center: {lat: 39.718401, lng: -105.1500635}
     });
 
-    var largeInfowindow = new google.maps.InfoWindow();
-
-    console.log(restaurants);
-//    console.log(restaurants[0]);
-//    console.log(Object.keys(restaurants).length);
-
-
-
 }
+
+var viewModel = function(){
+
+    var self = this;
+
+    self.locations = ko.observableArray([]);
+
+};
 
 // alerts the user if Google Maps fails to load
 function googleError() {
     alert('Google Maps has failed to load. Please check your internet connection or try again later.');
 }
-
-
-// ViewModel START
-//var ViewModel = function() {
-//
-//    var largeInfowindow = new google.maps.InfoWindow();
-//
-//    for (var i = 0; i < restaurants.length; i++) {
-//      // Get the position from the location array.
-//      var position = restaurants[i].coords;
-//      var title = restaurants[i].name;
-//      // Create a marker per location, and put into markers array.
-//      var marker = new google.maps.Marker({
-//        position: position,
-//        title: title,
-//        animation: google.maps.Animation.DROP,
-//        icon: defaultIcon,
-//        id: i
-//      });
-//      // Push the marker to our array of markers.
-//      markers.push(marker);
-//      // Create an onclick event to open the large infowindow at each marker.
-//      marker.addListener('click', function() {
-//        populateInfoWindow(this, largeInfowindow);
-//      });
-//      // Two event listeners - one for mouseover, one for mouseout,
-//      // to change the colors back and forth.
-//      marker.addListener('mouseover', function() {
-//        this.setIcon(highlightedIcon);
-//      });
-//      marker.addListener('mouseout', function() {
-//        this.setIcon(defaultIcon);
-//      });
-//    }
-//
-//};
-
-//var initApp = function() {
-//    initMap();
-//    ko.applyBindings(new ViewModel());
-//};
