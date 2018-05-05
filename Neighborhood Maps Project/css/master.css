@@ -45,7 +45,9 @@ h1 {
 }
 
 .infoWindowImage {
+
     width: 200px;
+
 }
 
 .options-box {
@@ -58,5 +60,19 @@ h1 {
     padding: 10px 10px 30px 10px;
     text-align: left;
     width: 340px;
+
+}
+
+#restaurantFilter {
+
+    width: 70%;
+    float: left;
+
+}
+
+#restaurantFilterNumber {
+
+    width: 20%;
+    float: right;
 
 }

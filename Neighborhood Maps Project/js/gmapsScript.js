@@ -1,10 +1,14 @@
 'use strict';
 
+// Intantiate all local variables
 var restaurants;
 var map;
 var infowindow;
+var markers = [];
 var bounds;
 
+
+// Create the map and call the API to show the markers
 function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -14,11 +18,12 @@ function initMap() {
 
     bounds = new google.maps.LatLngBounds();
 
+    // Call the API to create the markers
     ViewModel.callAPI();
 
 }
 
-// alerts the user if Google Maps fails to load
+// Handles an error in the google maps API
 function googleError() {
     alert('Google Maps has failed to load. Please check your internet connection or try again later.');
 }
@@ -29,21 +34,21 @@ var viewModel = function(){
 
     var self = this;
 
-    self.filteredLocations = ko.observableArray([]);
-
+    // Function creates the actual marker and places it on the map
     self.createMarkers = function(locations){
 
         infowindow = new google.maps.InfoWindow();
 
         for (var i = 0; i < locations.length; i++) {
 
+            // Get all of the markers data needed
             var restaurantInfo = locations[i]["restaurant"];
             var position = {"lat": Number(restaurantInfo["location"]["latitude"]), "lng": Number(restaurantInfo["location"]["longitude"])};
             var title = restaurantInfo["name"];
             var cuisines = restaurantInfo["cuisines"];
             var restaurantLink = restaurantInfo["url"];
             var thumbnailImage = restaurantInfo["thumb"];
-            var rating = restaurantInfo["user_rating"]["aggregate_rating"];
+            var rating = Number(restaurantInfo["user_rating"]["aggregate_rating"]);
 
             // Create a marker per location, and put into markers array.
             var marker = new google.maps.Marker({
@@ -59,22 +64,31 @@ var viewModel = function(){
 
             });
 
-            // Push the marker to our array of markers.
-            self.locations.push(marker);
+            // Adds marker to the markers array
+            markers.push(marker);
+
+            // Places the marker on the map
             marker.setMap(map);
+
+            // Extends the map bounds in case the marker is out of view
             bounds.extend(marker.position);
+
             // Create an onclick event to open the large infowindow at each marker.
             marker.addListener('click', function() {
                 self.populateInfoWindow(this, infowindow);
             });
 
+            // Makes the map bounds the bounds var value
             map.fitBounds(bounds);
         }
 
     };
 
+    // Function that calls the API
     self.callAPI = function(){
 
+
+        // Create the settings of the AJAX call
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -83,13 +97,17 @@ var viewModel = function(){
             "headers": {
                 "user-key": "20c48f3be1cb3d5555d26d949ac56258"
             }
-	    };
+         };
 
+        // Using jQuery, make an ajax call with the settings
         $.ajax(settings).done(function (response) {
 
+            // Get all of the restaurants and pass the array into the createMarkers method
             restaurants = response["best_rated_restaurant"];
             self.createMarkers(restaurants);
 
+
+          // Alert the user if the API call fails
         }).fail(function(){
 
             alert("Zomato API call failed. Try again.");
@@ -98,7 +116,8 @@ var viewModel = function(){
 
     };
 
-    self.populateInfoWindow = function(marker, infowindow){
+    // Creates the infowindow with all of the API information, and extends the map bounds
+    self.populateInfoWindow = async function(marker, infowindow){
 
         if (infowindow.marker != marker){
             infowindow.marker = marker;
@@ -116,13 +135,33 @@ var viewModel = function(){
 
         }
 
+        await sleep(1000);
         map.fitBounds(bounds);
 
     };
 
+    // Creates the rating variable
     self.rating = ko.observable(0);
 
+    // Hides/Shows markers based on the user's rating
     self.ratingFilter = function(){
+
+        for (var i = 0; i < markers.length; i++){
+
+            var restaurantRating = markers[i]["rating"];
+
+            if (restaurantRating < self.rating()){
+
+              markers[i].setMap(null);
+
+            }
+            else {
+
+              markers[i].setMap(map);
+
+            }
+
+        }
 
     };
 
@@ -131,6 +170,7 @@ var viewModel = function(){
 var ViewModel = new viewModel();
 ko.applyBindings(ViewModel);
 
+// Calls the ratingFilter function whenever the slider value changes
 ViewModel.rating.subscribe(function(){
 
     ViewModel.ratingFilter();
