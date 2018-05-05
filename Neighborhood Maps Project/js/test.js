@@ -1,12 +1,3 @@
-/*global ko, $ */
-
-
-var map;
-var markers;
-var infoWindow;
-var bounds;
-
-// callback function for google maps API
 var initMap = function () {
     'use strict';
 
@@ -51,15 +42,6 @@ var initMap = function () {
         VM.closeMenu();
     });
 };
-
-// Handling Google Maps API errors
-var mapError = function () {
-    'use strict';
-
-    window.console.log('Could not load Google Maps API');
-    window.alert('Could not load Google Maps API');
-};
-
 
 var viewModel = function () {
     'use strict';
@@ -211,15 +193,3 @@ var viewModel = function () {
 
 var VM = new viewModel();
 ko.applyBindings(VM);
-
-
-// Implement stringStartsWith utility function in KnockoutJS
-// Because it's not exported in the minified version https://github.com/knockout/knockout/issues/401
-// Check the src file https://github.com/knockout/knockout/blob/master/src/utils.js
-var stringStartsWith = function (string, startsWith) {
-    string = string || "";
-    if (startsWith.length > string.length) {
-        return false;
-    }
-    return string.substring(0, startsWith.length) === startsWith;
-};
