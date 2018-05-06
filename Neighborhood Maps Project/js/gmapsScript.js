@@ -34,6 +34,9 @@ var viewModel = function(){
 
     var self = this;
 
+    self.knockoutRestaurants = ko.observableArray();
+    self.filteredRestaurants = ko.observableArray();
+
     // Function creates the actual marker and places it on the map
     self.createMarkers = function(locations){
 
@@ -78,6 +81,12 @@ var viewModel = function(){
                 self.populateInfoWindow(this, infowindow);
             });
 
+            // Add the restaurant to the restaurants array
+            self.knockoutRestaurants.push(marker);
+
+            // Add the initial marker to filtered restaurants too
+            self.filteredRestaurants.push(marker);
+
             // Makes the map bounds the bounds var value
             map.fitBounds(bounds);
         }
@@ -117,7 +126,7 @@ var viewModel = function(){
     };
 
     // Creates the infowindow with all of the API information, and extends the map bounds
-    self.populateInfoWindow = async function(marker, infowindow){
+    self.populateInfoWindow = function(marker, infowindow){
 
         if (infowindow.marker != marker){
             infowindow.marker = marker;
@@ -134,8 +143,6 @@ var viewModel = function(){
             });
 
         }
-
-        await sleep(1000);
         map.fitBounds(bounds);
 
     };
@@ -143,27 +150,41 @@ var viewModel = function(){
     // Creates the rating variable
     self.rating = ko.observable(0);
 
+    // Displays the infowindow if the marker is clicked on the list of names
+    self.clickedMarker = function(marker){
+
+        self.populateInfoWindow(marker, infowindow);
+
+    }
+
     // Hides/Shows markers based on the user's rating
-    self.ratingFilter = function(){
+    self.ratingFilter = ko.computed(function(){
 
-        for (var i = 0; i < markers.length; i++){
+        for (var i = 0; i < self.knockoutRestaurants().length; i++){
 
-            var restaurantRating = markers[i]["rating"];
+            var restaurantRating = self.knockoutRestaurants()[i]["rating"];
 
             if (restaurantRating < self.rating()){
 
-              markers[i].setMap(null);
+              self.knockoutRestaurants()[i].setMap(null);
 
             }
             else {
 
-              markers[i].setMap(map);
+              self.knockoutRestaurants()[i].setMap(map);
 
             }
 
         }
 
-    };
+        // Returns an array of the restaurants that have a higher or equal rating to the users selection
+        return ko.utils.arrayFilter(self.knockoutRestaurants(), function(restaurantArg){
+
+            return restaurantArg.rating >= self.rating();
+
+        });
+
+    });
 
 };
 
